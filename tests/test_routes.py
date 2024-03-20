@@ -57,16 +57,16 @@ class TestRoutes:
         assert res.json()["document"] is not None, res.text
 
 
-    # def test_delete_documents(self, api):
-    #     query = {"ids": ["1434484792463866663"]}
-    #     res = api.delete(f"/delete-documents/{TEST_INDEX}", json=query)
-    #     assert res.json()["count"] == 1, res.text
+    def test_delete_documents(self, api):
+        query = {"ids": ["1434484792463866663"]}
+        res = api.post(f"/delete-documents/{TEST_INDEX}", json=query)
+        assert res.json()["count"] == 1, res.text
 
 
-    # def test_unsafe_really_delete_documents(self, api):
-    #     query = {"ids": ["1434484792463866663"]}
-    #     res = api.delete(f"/unsafe/really-delete-documents/{TEST_INDEX}", json=query)
-    #     assert res["count"] == 1, res.text
+    def test_unsafe_really_delete_documents(self, api):
+        query = {"ids": ["1434484792463866663"]}
+        res = api.post(f"/unsafe/really-delete-documents/{TEST_INDEX}", json=query)
+        assert res.json()["count"] == 1, res.text
 
 
     def test_list_index(self, api):

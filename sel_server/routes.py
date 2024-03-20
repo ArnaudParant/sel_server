@@ -77,6 +77,7 @@ def get_one_document(index: str, doc_id: str):
 
 
 @app.delete('/delete-documents/{index}', response_model=response_models.DeleteDocuments)
+@app.post('/delete-documents/{index}', response_model=response_models.DeleteDocuments)
 @exceptions.rewriter
 def delete_documents(index: str, query: body_models.DeleteQuery):
     sel = starter.get_api()
@@ -86,6 +87,10 @@ def delete_documents(index: str, query: body_models.DeleteQuery):
 
 
 @app.delete(
+    '/unsafe/really-delete-documents/{index}',
+    response_model=response_models.ReallyDeleteDocuments
+)
+@app.post(
     '/unsafe/really-delete-documents/{index}',
     response_model=response_models.ReallyDeleteDocuments
 )
